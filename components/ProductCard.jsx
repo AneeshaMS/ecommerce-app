@@ -1,14 +1,11 @@
-import { useNavigation } from "@react-navigation/core";
 import { useContext, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { CartContext } from "../context/CartContext";
 
 const ProductCard = ({ product }) => {
-  const navigation = useNavigation();
-  const { addToCart, updateQuantity } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext);
   const [liked, setLiked] = useState(false);
-
   return (
     <View style={styles.container}>
       <View

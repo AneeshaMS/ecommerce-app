@@ -46,13 +46,11 @@ export default Header;
 
 const styles = StyleSheet.create({
   button: {
-    // backgroundColor: "#FACC15",
     paddingLeft: 10,
     paddingRight: 10,
     borderRadius: 5,
     margin: 10,
     alignItems: "center",
     justifyContent: "center",
-    // width: 100,
   },
 });

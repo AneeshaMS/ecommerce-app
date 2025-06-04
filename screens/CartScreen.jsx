@@ -6,8 +6,7 @@ import Layout from "../components/Layout";
 import { CartContext } from "../context/CartContext";
 
 const CartScreen = () => {
-  const { cartItems, removeFromCart, updateQuantity, clearCart, getTotal } =
-    useContext(CartContext);
+  const { cartItems, clearCart, getTotal } = useContext(CartContext);
 
   return (
     <Layout>
@@ -64,17 +63,3 @@ const CartScreen = () => {
 };
 
 export default CartScreen;
-
-{
-  /* <View style={{ marginVertical: 10 }}>
-  <Text>{item.name}</Text>
-  <Text>
-    ₹{item.price} x {item.quantity}
-  </Text>
-  <View style={{ flexDirection: "row", gap: 10 }}>
-    <Button title="➕" onPress={() => updateQuantity(item.id, 1)} />
-    <Button title="➖" onPress={() => updateQuantity(item.id, -1)} />
-    <Button title="❌ Remove" onPress={() => removeFromCart(item.id)} />
-  </View>
-</View>; */
-}

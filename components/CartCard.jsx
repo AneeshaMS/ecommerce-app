@@ -2,8 +2,7 @@ import { useContext } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { CartContext } from "../context/CartContext";
 const CartCard = ({ item }) => {
-  const { cartItems, removeFromCart, updateQuantity, clearCart, getTotal } =
-    useContext(CartContext);
+  const { updateQuantity } = useContext(CartContext);
   return (
     <View style={styles.container}>
       <View
@@ -20,12 +19,16 @@ const CartCard = ({ item }) => {
             borderRadius: 10,
             padding: 10,
             width: 75,
-            // height: 75,
             alignItems: "center",
             justifyContent: "center",
           }}
         >
-          <Image source={require("../assets/bg.png")} style={styles.image} />
+          <Image
+            source={{
+              uri: "https://plus.unsplash.com/premium_photo-1679913792906-13ccc5c84d44?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            }}
+            style={styles.image}
+          />
         </View>
         <View>
           <Text style={{ color: "#27214D", fontSize: 18, fontWeight: "bold" }}>
@@ -33,7 +36,7 @@ const CartCard = ({ item }) => {
           </Text>
           <Text style={{ color: "gray", fontSize: 16 }}>Men's Shoe</Text>
           <Text style={{ color: "#F08626", fontSize: 18, fontWeight: "bold" }}>
-            {item.price}
+            $ {item.price}
           </Text>
         </View>
       </View>
@@ -75,7 +78,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "row",
     padding: 10,
-    elevation: 10,
+    elevation: 3,
     backgroundColor: "#FFFAEB",
     borderRadius: 10,
     borderWidth: 1,

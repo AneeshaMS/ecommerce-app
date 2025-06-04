@@ -5,7 +5,7 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
-  // Load from AsyncStorage on mount
+  // Fetch item from async storage on component mounting
   useEffect(() => {
     const loadCart = async () => {
       const stored = await AsyncStorage.getItem('cartData');
