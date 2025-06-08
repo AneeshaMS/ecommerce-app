@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import { useContext } from "react";
 import { Button, FlatList, Text, View } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -7,7 +8,8 @@ import { CartContext } from "../context/CartContext";
 
 const CartScreen = () => {
   const { cartItems, clearCart, getTotal } = useContext(CartContext);
-
+  const router = useRouter();
+  console.log("first", cartItems);
   return (
     <Layout>
       <View
@@ -19,7 +21,10 @@ const CartScreen = () => {
         }}
       >
         <View style={{ gap: 10 }}>
-          <Text style={{ fontSize: 22, fontWeight: "bold", color: "#27214D" }}>
+          <Text
+            style={{ fontSize: 22, fontWeight: "bold", color: "#27214D" }}
+            onPress={() => router.push("/")}
+          >
             🧾 Your Cart
           </Text>
           {cartItems.length === 0 ? (
@@ -31,10 +36,13 @@ const CartScreen = () => {
               </Text>
             </View>
           ) : (
-            <FlatList
+              <FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
               data={cartItems}
               keyExtractor={(item) => item.id}
-              renderItem={({ item }) => <CartCard item={item} />}
+                renderItem={({ item }) => <CartCard item={item} />}
+                ItemSeparatorComponent={() => <View style={{margin:10} } />}
             />
           )}
         </View>

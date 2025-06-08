@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderStyle: "solid",
     borderColor: "#FFF2E7",
+    flex:1
   },
 
   logo: {

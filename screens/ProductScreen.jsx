@@ -1,19 +1,37 @@
-import { useContext } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { useRouter } from "expo-router";
+import { FlatList, ScrollView, Text, View } from "react-native";
 import Layout from "../components/Layout";
 import ProductCard from "../components/ProductCard";
-import { CartContext } from "../context/CartContext";
 const ProductScreen = () => {
-  const { addToCart } = useContext(CartContext);
+  // const { addToCart } = useContext(CartContext);
+  const router = useRouter();
 
   return (
     <Layout>
       <View style={{ padding: 20 }}>
-        <ScrollView>
-          <Text style={{ fontSize: 22, fontWeight: "bold", color: "#27214D" }}>
+        {/* <ScrollView> */}
+          <Text
+            style={{ fontSize: 22, fontWeight: "bold", color: "#27214D" }}
+            onPress={() => router.push("/cart")}
+          >
             🛍️ Shop Items
           </Text>
-          <View
+
+          <FlatList
+            data={products}
+            keyExtractor={(item) => item.id}
+            renderItem={(item) => <ProductCard product={item.item} />}
+            maxToRenderPerBatch={5}
+            numColumns={2}
+            ListHeaderComponent={() => (
+              <View style={{ height: 20, backgroundColor: "#000" }}>
+                <Text>Above</Text>
+              </View>
+          )}
+          showsVerticalScrollIndicator={false}
+          />
+
+          {/* <View
             style={{
               marginVertical: 10,
               flexDirection: "row",
@@ -23,8 +41,8 @@ const ProductScreen = () => {
             {products.map((product) => (
               <ProductCard product={product} key={product.id} />
             ))}
-          </View>
-        </ScrollView>
+          </View> */}
+        {/* </ScrollView> */}
       </View>
     </Layout>
   );

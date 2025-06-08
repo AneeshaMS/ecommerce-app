@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
+import { registerRootComponent } from "expo";
 import "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/Ionicons";
 import Header from "./components/Header";
@@ -11,11 +11,13 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <CartProvider>
-      <NavigationContainer>
-        <TabScreens />
-      </NavigationContainer>
-    </CartProvider>
+      <ExpoRoot />
+      {/* <Tabs>
+        <Tabs.Screen
+          name="products"
+          options={{ headerShown: false, title: "ProductScreen" }}
+        />
+      </Tabs> */}
   );
 }
 const TabScreens = () => (
@@ -61,3 +63,5 @@ const TabScreens = () => (
     />
   </Tab.Navigator>
 );
+
+registerRootComponent(App);

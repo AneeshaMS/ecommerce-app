@@ -1,5 +1,5 @@
-import React, { createContext, useState, useEffect } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { createContext, useEffect, useState } from "react";
 
 export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
@@ -8,7 +8,7 @@ export const CartProvider = ({ children }) => {
   // Fetch item from async storage on component mounting
   useEffect(() => {
     const loadCart = async () => {
-      const stored = await AsyncStorage.getItem('cartData');
+      const stored = await AsyncStorage.getItem("cartData");
       if (stored) setCartItems(JSON.parse(stored));
     };
     loadCart();
@@ -16,15 +16,18 @@ export const CartProvider = ({ children }) => {
 
   // Save to AsyncStorage whenever cart changes
   useEffect(() => {
-    AsyncStorage.setItem('cartData', JSON.stringify(cartItems));
+    AsyncStorage.setItem("cartData", JSON.stringify(cartItems));
   }, [cartItems]);
 
   const addToCart = (product) => {
-    setCartItems(prev => {
-      const existing = prev.find(item => item.id === product.id);
+    console.log("products", product);
+    setCartItems((prev) => {
+      const existing = prev.find((item) => item.id === product.id);
       if (existing) {
-        return prev.map(item =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        return prev.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
         );
       } else {
         return [...prev, { ...product, quantity: 1 }];
@@ -33,12 +36,12 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeFromCart = (productId) => {
-    setCartItems(prev => prev.filter(item => item.id !== productId));
+    setCartItems((prev) => prev.filter((item) => item.id !== productId));
   };
 
   const updateQuantity = (productId, amount) => {
-    setCartItems(prev =>
-      prev.map(item =>
+    setCartItems((prev) =>
+      prev.map((item) =>
         item.id === productId
           ? { ...item, quantity: Math.max(1, item.quantity + amount) }
           : item
@@ -49,7 +52,10 @@ export const CartProvider = ({ children }) => {
   const clearCart = () => setCartItems([]);
 
   const getTotal = () => {
-    return cartItems.reduce((total, item) => total + item.quantity * item.price, 0);
+    return cartItems.reduce(
+      (total, item) => total + item.quantity * item.price,
+      0
+    );
   };
 
   return (

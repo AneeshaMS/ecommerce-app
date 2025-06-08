@@ -1,10 +1,9 @@
 import { ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
 const Layout = ({ children }) => {
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>{children}</ScrollView>
+     {children}
     </SafeAreaView>
   );
 };
